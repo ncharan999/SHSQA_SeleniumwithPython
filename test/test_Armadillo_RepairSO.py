@@ -4,25 +4,26 @@ from pages.homePage_armadillo import homePage
 from pages.repairPage_armadillo import repairLink
 from testdata import Credentials as C
 
+@pytest.mark.usefixtures("test_setup")
 class TestcreateRepairSO():
 
-    @pytest.fixture(scope="class")
-    def test_setup(self):
-        global driver
-        chromeOptions = webdriver.ChromeOptions()
-        chromeOptions.add_experimental_option('useAutomationExtension', False)
-        chromeOptions.add_argument('--disable-extensions')
-        driver = webdriver.Chrome(options=chromeOptions, desired_capabilities=chromeOptions.to_capabilities(),
-                                  executable_path='C:/Users/cnallan/PycharmProjects/Python_Selenium/drivers/chromedriver.exe')
-        driver.implicitly_wait(10)
-        driver.maximize_window()
-        yield
-        driver.close()
-        driver.quit()
-        print("TestCompleted")
-
-    def test_createSO(self, test_setup):
-        # driver = self.driver
+    # @pytest.fixture(scope="class")
+    # def test_setup(self):
+    #     global driver
+    #     chromeOptions = webdriver.ChromeOptions()
+    #     chromeOptions.add_experimental_option('useAutomationExtension', False)
+    #     chromeOptions.add_argument('--disable-extensions')
+    #     driver = webdriver.Chrome(options=chromeOptions, desired_capabilities=chromeOptions.to_capabilities(),
+    #                               executable_path='C:/Users/cnallan/PycharmProjects/Python_Selenium/drivers/chromedriver.exe')
+    #     driver.implicitly_wait(10)
+    #     driver.maximize_window()
+    #     yield
+    #     driver.close()
+    #     driver.quit()
+    #     print("TestCompleted")
+    #Testcase:1 Creating Repair SO from armadillo
+    def test_createSO(self):
+        driver = self.driver
         HomePage = homePage(driver)
         HomePage.validUrl(C.URL)
         RepairLinkPage = repairLink(driver)
